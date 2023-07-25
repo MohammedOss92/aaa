@@ -24,14 +24,16 @@ class MsgAdapter(var msg_list:List<Msg>, var context: Context,var fontFamily: Ty
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val msg: Msg = msg_list.get(position)
         holder.tv.text =msg.Con_Name
-        holder.tv.typeface = fontFamily
+        fontFamily?.let {
+            holder.tv.typeface = it
+        }
     }
 
     override fun getItemCount(): Int {
         return msg_list.size
     }
 
-    fun setFont(font: Typeface) {
+    fun setFont(font: Typeface?) {
         this.fontFamily = font
         notifyDataSetChanged()
     }
