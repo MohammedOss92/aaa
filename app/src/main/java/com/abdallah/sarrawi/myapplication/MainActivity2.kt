@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,10 +29,14 @@ class MainActivity2 : AppCompatActivity() {
     private var Ffont: Typeface? = null
     private var msgAdapter: MsgAdapter? = null
     private var msg_list: List<Msg> = ArrayList()
+    private lateinit var sharedFontViewModel: SharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+
+        sharedFontViewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
+
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         initFonts()
         initRecyclerView()
